@@ -13,6 +13,7 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -21,6 +22,10 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+
+    //Dependencia al proyecto core
+    implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:main-SNAPSHOT'
+	
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
