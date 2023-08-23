@@ -2,10 +2,12 @@ package tp.pp2.rpg.generator.gui.view;
 
 import javax.swing.JFrame;
 
+
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private PanelSelectorArchivoHabilidades panelSelectorHabilidades;
+	
 
 	public VentanaPrincipal() {
 		initialize();
