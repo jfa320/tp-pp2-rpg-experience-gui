@@ -12,8 +12,8 @@ public class VentanaPrincipal extends JFrame{
 	private AsignadorHabilidades asignadorHabilidades;
 
 	public VentanaPrincipal(AsignadorHabilidades asignadorHabilidades) {
-		initialize();
 		this.asignadorHabilidades=asignadorHabilidades;
+		initialize();
 	}
 
 	private void initialize() {

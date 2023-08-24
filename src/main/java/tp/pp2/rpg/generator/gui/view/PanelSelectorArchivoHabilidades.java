@@ -22,8 +22,8 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 	private PanelSelectorArchivoHabilidadesController panelSelectorArchivoHabilidadesController;
 
 	public PanelSelectorArchivoHabilidades(AsignadorHabilidades asignadorHabilidades) {
-		initialize();
 		this.asignadorHabilidades=asignadorHabilidades;
+		initialize();
 	}
 
 	private void initialize() {
@@ -75,8 +75,8 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 	@Override
 	public void update(Observable o, Object arg) {
 		//aca definir el cambio	
-		
 		//mostrar un cartel de se leyó o algo asi
+		System.out.println("cambio a true");
 	}
 	
 }
