@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
+
 import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
 import tp.pp2.rpg.generator.gui.view.PanelSelectorArchivoHabilidades;
 
@@ -45,7 +47,6 @@ public class PanelSelectorArchivoHabilidadesController implements Observer{
 	public void update(Observable o, Object arg) {
 		//aca definir el cambio	
 		//mostrar un cartel de se leyó o algo asi
-		System.out.println("cambio desde controller obs");
 	}
 
 }

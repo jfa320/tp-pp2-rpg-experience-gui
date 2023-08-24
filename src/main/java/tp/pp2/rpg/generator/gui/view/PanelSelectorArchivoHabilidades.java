@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
@@ -74,9 +75,9 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//aca definir el cambio	
-		//mostrar un cartel de se leyÃ³ o algo asi
-		System.out.println("cambio a true obs");
+		// aca agregar logica de observer
+		JOptionPane.showMessageDialog(this, "Se cargó el archivo correctamente");
+		
 	}
 	
 }
