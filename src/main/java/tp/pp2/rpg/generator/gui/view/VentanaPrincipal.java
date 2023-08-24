@@ -2,19 +2,22 @@ package tp.pp2.rpg.generator.gui.view;
 
 import javax.swing.JFrame;
 
+import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
+
 
 public class VentanaPrincipal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private PanelSelectorArchivoHabilidades panelSelectorHabilidades;
-	
+	private AsignadorHabilidades asignadorHabilidades;
 
-	public VentanaPrincipal() {
+	public VentanaPrincipal(AsignadorHabilidades asignadorHabilidades) {
 		initialize();
+		this.asignadorHabilidades=asignadorHabilidades;
 	}
 
 	private void initialize() {
-		panelSelectorHabilidades = new PanelSelectorArchivoHabilidades();
+		panelSelectorHabilidades = new PanelSelectorArchivoHabilidades(asignadorHabilidades);
 		this.setBounds(100, 100, 1000, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);

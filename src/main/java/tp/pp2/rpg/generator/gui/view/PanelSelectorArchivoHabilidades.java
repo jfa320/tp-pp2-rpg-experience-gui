@@ -1,24 +1,29 @@
 package tp.pp2.rpg.generator.gui.view;
 
 import java.awt.Dimension;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
 import tp.pp2.rpg.generator.gui.controller.PanelSelectorArchivoHabilidadesController;
 
 import javax.swing.JFileChooser;
 
-public class PanelSelectorArchivoHabilidades extends JPanel {
+public class PanelSelectorArchivoHabilidades extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private JButton btnCargaArchivo;
 	private JLabel labelCargaArchivo;
 	private JFileChooser selectorArchivos;
+	private AsignadorHabilidades asignadorHabilidades;
 	private PanelSelectorArchivoHabilidadesController panelSelectorArchivoHabilidadesController;
 
-	public PanelSelectorArchivoHabilidades() {
+	public PanelSelectorArchivoHabilidades(AsignadorHabilidades asignadorHabilidades) {
 		initialize();
+		this.asignadorHabilidades=asignadorHabilidades;
 	}
 
 	private void initialize() {
@@ -27,14 +32,14 @@ public class PanelSelectorArchivoHabilidades extends JPanel {
 		labelCargaArchivo = new JLabel("Carga de habilidades:");
 		selectorArchivos = new JFileChooser();
 		
-		//instancio el panel selector
-		panelSelectorArchivoHabilidadesController=new PanelSelectorArchivoHabilidadesController(this);
+		//instancio el controlador del panel selector archivos
+		panelSelectorArchivoHabilidadesController=new PanelSelectorArchivoHabilidadesController(this, asignadorHabilidades);
 		
-		// ajusto tamaño y seteo absolute layout
+		// ajusto tamano y seteo absolute layout
 		setPreferredSize(new Dimension(884, 133));
 		setLayout(null);
 
-		// seteo tamaños componentes
+		// seteo tamanos componentes
 		btnCargaArchivo.setBounds(345, 50, 140, 25);
 		labelCargaArchivo.setBounds(95, 45, 235, 35);
 
@@ -65,6 +70,13 @@ public class PanelSelectorArchivoHabilidades extends JPanel {
 
 	public void setSelectorArchivos(JFileChooser selectorArchivos) {
 		this.selectorArchivos = selectorArchivos;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		//aca definir el cambio	
+		
+		//mostrar un cartel de se leyÃ³ o algo asi
 	}
 	
 }

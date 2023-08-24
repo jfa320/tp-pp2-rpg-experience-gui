@@ -1,16 +1,21 @@
 package tp.pp2.rpg.generator.gui.controller;
 
 import java.io.File;
+import java.util.Observable;
+import java.util.Observer;
 
+import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
 import tp.pp2.rpg.generator.gui.view.PanelSelectorArchivoHabilidades;
 
-public class PanelSelectorArchivoHabilidadesController {
+public class PanelSelectorArchivoHabilidadesController implements Observer{
 
-	PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades;
-	File archivo;
+	private PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades;
+	private File archivo;
+	private AsignadorHabilidades asignadorHabilidades;
 
-	public PanelSelectorArchivoHabilidadesController(PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades) {
+	public PanelSelectorArchivoHabilidadesController(PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades,AsignadorHabilidades asignadorHabilidades) {
 		this.panelSelectorArchivoHabilidades = panelSelectorArchivoHabilidades;
+		this.asignadorHabilidades=asignadorHabilidades;
 		initialize();
 	}
 
@@ -28,6 +33,13 @@ public class PanelSelectorArchivoHabilidadesController {
 
 	public void setArchivo(File archivo) {
 		this.archivo = archivo;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		//aca definir el cambio	
+		
+		//mostrar un cartel de se leyó o algo asi
 	}
 
 }
