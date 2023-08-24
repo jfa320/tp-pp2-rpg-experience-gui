@@ -31,7 +31,7 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 		btnCargaArchivo = new JButton("Cargar Archivo");
 		labelCargaArchivo = new JLabel("Carga de habilidades:");
 		selectorArchivos = new JFileChooser();
-		
+		asignadorHabilidades.addObserver(this);
 		//instancio el controlador del panel selector archivos
 		panelSelectorArchivoHabilidadesController=new PanelSelectorArchivoHabilidadesController(this, asignadorHabilidades);
 		
@@ -76,7 +76,7 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 	public void update(Observable o, Object arg) {
 		//aca definir el cambio	
 		//mostrar un cartel de se leyó o algo asi
-		System.out.println("cambio a true");
+		System.out.println("cambio a true obs");
 	}
 	
 }

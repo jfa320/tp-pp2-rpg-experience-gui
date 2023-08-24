@@ -21,6 +21,7 @@ public class PanelSelectorArchivoHabilidadesController implements Observer{
 	}
 
 	private void initialize() {
+		asignadorHabilidades.addObserver(this);
 		this.panelSelectorArchivoHabilidades.getBtnCargaArchivo().addActionListener(
 				e -> {
 					this.panelSelectorArchivoHabilidades.getSelectorArchivos().showOpenDialog(null);
@@ -44,7 +45,7 @@ public class PanelSelectorArchivoHabilidadesController implements Observer{
 	public void update(Observable o, Object arg) {
 		//aca definir el cambio	
 		//mostrar un cartel de se leyó o algo asi
-		System.out.println("cambio desde controller");
+		System.out.println("cambio desde controller obs");
 	}
 
 }
