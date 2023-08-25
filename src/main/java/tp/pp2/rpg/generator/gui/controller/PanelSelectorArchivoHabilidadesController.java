@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.JOptionPane;
 
 import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
+import tp.pp2.rpg.generator.gui.view.PanelCombate;
 import tp.pp2.rpg.generator.gui.view.PanelSelectorArchivoHabilidades;
 
 public class PanelSelectorArchivoHabilidadesController implements Observer{
@@ -14,24 +15,24 @@ public class PanelSelectorArchivoHabilidadesController implements Observer{
 	private PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades;
 	private File archivo;
 	private AsignadorHabilidades asignadorHabilidades;
+	private PanelCombate panel;
 
-	public PanelSelectorArchivoHabilidadesController(PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades,AsignadorHabilidades asignadorHabilidades) {
+	public PanelSelectorArchivoHabilidadesController(PanelSelectorArchivoHabilidades panelSelectorArchivoHabilidades,AsignadorHabilidades asignadorHabilidades, PanelCombate panelCombate) {
 		this.panelSelectorArchivoHabilidades = panelSelectorArchivoHabilidades;
 		this.asignadorHabilidades=asignadorHabilidades;
-		System.out.println("constructor:"+asignadorHabilidades.getSeLeyoArchivo());
+		this.panel=panelCombate;
 		initialize();
 	}
 
 	private void initialize() {
 		asignadorHabilidades.addObserver(this);
+		
 		this.panelSelectorArchivoHabilidades.getBtnCargaArchivo().addActionListener(
 				e -> {
 					this.panelSelectorArchivoHabilidades.getSelectorArchivos().showOpenDialog(null);
 					archivo=this.panelSelectorArchivoHabilidades.getSelectorArchivos().getSelectedFile();
 					//TODO: estaria correcto hacer esto?
-					System.out.println(asignadorHabilidades.getSeLeyoArchivo());
 					asignadorHabilidades.setArchivoLeido(true);
-					System.out.println("despues de asignar"+asignadorHabilidades.getSeLeyoArchivo());
 				});
 	}
 
@@ -45,8 +46,8 @@ public class PanelSelectorArchivoHabilidadesController implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//aca definir el cambio	
-		//mostrar un cartel de se leyó o algo asi
+		this.panelSelectorArchivoHabilidades.setVisible(false);
+		this.panel.setVisible(true);
 	}
 
 }

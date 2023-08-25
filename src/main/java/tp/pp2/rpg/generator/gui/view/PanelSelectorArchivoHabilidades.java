@@ -21,9 +21,11 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 	private JFileChooser selectorArchivos;
 	private AsignadorHabilidades asignadorHabilidades;
 	private PanelSelectorArchivoHabilidadesController panelSelectorArchivoHabilidadesController;
+	private PanelCombate panelCombate;
 
-	public PanelSelectorArchivoHabilidades(AsignadorHabilidades asignadorHabilidades) {
+	public PanelSelectorArchivoHabilidades(AsignadorHabilidades asignadorHabilidades,PanelCombate panelCombate) {
 		this.asignadorHabilidades=asignadorHabilidades;
+		this.panelCombate=panelCombate;
 		initialize();
 	}
 
@@ -32,9 +34,10 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 		btnCargaArchivo = new JButton("Cargar Archivo");
 		labelCargaArchivo = new JLabel("Carga de habilidades:");
 		selectorArchivos = new JFileChooser();
+		//suscribo la vista como observador
 		asignadorHabilidades.addObserver(this);
 		//instancio el controlador del panel selector archivos
-		panelSelectorArchivoHabilidadesController=new PanelSelectorArchivoHabilidadesController(this, asignadorHabilidades);
+		panelSelectorArchivoHabilidadesController=new PanelSelectorArchivoHabilidadesController(this, asignadorHabilidades,panelCombate);
 		
 		// ajusto tamano y seteo absolute layout
 		setPreferredSize(new Dimension(884, 133));
@@ -76,8 +79,7 @@ public class PanelSelectorArchivoHabilidades extends JPanel implements Observer 
 	@Override
 	public void update(Observable o, Object arg) {
 		// aca agregar logica de observer
-		JOptionPane.showMessageDialog(this, "Se cargó el archivo correctamente");
-		
+		JOptionPane.showMessageDialog(this, "Se cargï¿½ el archivo correctamente");
 	}
 	
 }
