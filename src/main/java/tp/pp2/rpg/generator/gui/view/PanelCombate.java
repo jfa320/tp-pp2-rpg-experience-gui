@@ -8,31 +8,37 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-
-import tp.pp2.rpg.generator.core.entidades.asignadorHabilidades.AsignadorHabilidades;
+import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgGenerator;
+import tp.pp2.rpg.generator.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnHabilidad1;
 	private JButton btnHabilidad2;
 	private JButton btnHabilidad3;
 	private JButton btnHabilidad4;
 	private JLabel rivalNombreLabel;
 	private JLabel personajeNombreLabel;
-	
+
 	private JProgressBar barraVidaJ1;
 	private JProgressBar barraVidaJ2;
 
-	private AsignadorHabilidades asignadorHabilidades;
+	private RpgGenerator rpgGenerator;
+	private PanelCombateController panelCombateController;
 
-	public PanelCombate(AsignadorHabilidades asignadorHabilidades) {
-		this.asignadorHabilidades = asignadorHabilidades;
+	public PanelCombate(RpgGenerator rpgGenerator) {
+		this.rpgGenerator = rpgGenerator;
 		this.initialize();
+		panelCombateController=new PanelCombateController(this,this.rpgGenerator);
 	}
 
 	private void initialize() {
-		asignadorHabilidades.addObserver(this);
-		
+		rpgGenerator.addObserver(this);
+
 		btnHabilidad1 = new JButton();
 		btnHabilidad2 = new JButton();
 		btnHabilidad3 = new JButton();
@@ -48,20 +54,20 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(btnHabilidad4);
 		this.add(rivalNombreLabel);
 		this.add(personajeNombreLabel);
-		// VIDAJ2
-		this.add(barraVidaJ2);
-		barraVidaJ2.setBounds(425, 5, 455, 15);
-		barraVidaJ2.setForeground(Color.green);
-		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(barraVidaJ2.getValue() + "/100");
 		// VIDAJ1
-		this.add(barraVidaJ1);
+		barraVidaJ1.setValue(100);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(barraVidaJ1.getValue() + "/100");
-		
-		
+		barraVidaJ1.setString(rpgGenerator.getJugador1().getVida() + "/100");
+		this.add(barraVidaJ1);
+		// VIDAJ2
+		barraVidaJ2.setValue(100);
+		barraVidaJ2.setBounds(425, 5, 455, 15);
+		barraVidaJ2.setForeground(Color.green);
+		barraVidaJ2.setStringPainted(true);
+		barraVidaJ2.setString(rpgGenerator.getJugador2().getVida()  + "/100");
+		this.add(barraVidaJ2);
 		btnHabilidad1.setBounds(0, 265, 455, 120);
 		btnHabilidad2.setBounds(455, 265, 455, 120);
 		btnHabilidad3.setBounds(0, 385, 455, 120);
@@ -137,8 +143,8 @@ public class PanelCombate extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		System.out.println("panel combate!!");
+		barraVidaJ2.setValue(rpgGenerator.getJugador2().getVida());
+		barraVidaJ2.setString(rpgGenerator.getJugador2().getVida() + "/100");
 	}
 
 }
