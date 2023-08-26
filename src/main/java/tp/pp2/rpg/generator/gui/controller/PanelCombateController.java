@@ -38,15 +38,27 @@ public class PanelCombateController implements Observer {
 	}
 
 	private void asignarFuncionalidadHabilidadesBotones() {
-		this.panelCombate.getBtnHabilidad1().addActionListener(e-> rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(0)));
-		this.panelCombate.getBtnHabilidad2().addActionListener(e-> rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(1)));
-		this.panelCombate.getBtnHabilidad3().addActionListener(e-> rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(2)));
-		this.panelCombate.getBtnHabilidad4().addActionListener(e-> rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(3)));
+		this.panelCombate.getBtnHabilidad1().addActionListener(e->{ 
+			rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(0));
+			rpgGenerator.validarCombate();
+		});
+		this.panelCombate.getBtnHabilidad2().addActionListener(e->{ 
+			rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(1));
+			rpgGenerator.validarCombate();
+		});
+		this.panelCombate.getBtnHabilidad3().addActionListener(e->{ 
+			rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(2));
+			rpgGenerator.validarCombate();
+		});
+		this.panelCombate.getBtnHabilidad4().addActionListener(e->{ 
+			rpgGenerator.atacarJ2(rpgGenerator.getJugador1().getHabilidades().get(3));
+			rpgGenerator.validarCombate();
+		});
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		//TODO
 	}
 
 }

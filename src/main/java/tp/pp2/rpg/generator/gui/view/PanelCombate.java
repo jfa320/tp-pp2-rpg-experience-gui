@@ -26,6 +26,8 @@ public class PanelCombate extends JPanel implements Observer {
 
 	private RpgGenerator rpgGenerator;
 	private PanelCombateController panelCombateController;
+	
+	private JLabel resultadoCombate;
 
 	public PanelCombate(RpgGenerator rpgGenerator) {
 		this.rpgGenerator = rpgGenerator;
@@ -44,6 +46,8 @@ public class PanelCombate extends JPanel implements Observer {
 		personajeNombreLabel.setText(rpgGenerator.getJugador1().getNombrePersonaje()+ " | Tipo: "+rpgGenerator.getJugador2().getTipo());
 		rivalNombreLabel = new JLabel();
 		rivalNombreLabel.setText(rpgGenerator.getJugador2().getNombrePersonaje() + " | Tipo: "+rpgGenerator.getJugador2().getTipo());
+		resultadoCombate=new JLabel();
+		
 		barraVidaJ2 = new JProgressBar(0, 100);
 		barraVidaJ1 = new JProgressBar(0, 100);
 
@@ -53,6 +57,7 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(btnHabilidad4);
 		this.add(rivalNombreLabel);
 		this.add(personajeNombreLabel);
+		this.add(resultadoCombate);
 		// VIDAJ1
 		barraVidaJ1.setValue(100);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
@@ -73,6 +78,7 @@ public class PanelCombate extends JPanel implements Observer {
 		btnHabilidad4.setBounds(455, 385, 455, 120);
 		rivalNombreLabel.setBounds(10, -45, 455, 120);
 		personajeNombreLabel.setBounds(500, 180, 455, 120);
+		resultadoCombate.setBounds(400, 500, 455, 120);
 
 	}
 
@@ -144,6 +150,16 @@ public class PanelCombate extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		barraVidaJ2.setValue(rpgGenerator.getJugador2().getVida());
 		barraVidaJ2.setString(rpgGenerator.getJugador2().getVida() + "/100");
+		
+		if(rpgGenerator.getCombate().getBatallaFinalizada()) {
+			String mensajeVictoria;
+			if(rpgGenerator.getCombate().getVictoriaJugador()) {
+				mensajeVictoria="Gana el Jugador";
+			}else {
+				mensajeVictoria="Gana la maquina";
+			}
+			resultadoCombate.setText(mensajeVictoria);
+		}
 	}
 
 }
