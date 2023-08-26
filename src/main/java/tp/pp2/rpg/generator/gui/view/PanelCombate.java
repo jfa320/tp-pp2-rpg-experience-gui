@@ -13,9 +13,6 @@ import tp.pp2.rpg.generator.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JButton btnHabilidad1;
 	private JButton btnHabilidad2;
@@ -43,8 +40,10 @@ public class PanelCombate extends JPanel implements Observer {
 		btnHabilidad2 = new JButton();
 		btnHabilidad3 = new JButton();
 		btnHabilidad4 = new JButton();
-		rivalNombreLabel = new JLabel();
 		personajeNombreLabel = new JLabel();
+		personajeNombreLabel.setText(rpgGenerator.getJugador1().getNombrePersonaje()+ " | Tipo: "+rpgGenerator.getJugador2().getTipo());
+		rivalNombreLabel = new JLabel();
+		rivalNombreLabel.setText(rpgGenerator.getJugador2().getNombrePersonaje() + " | Tipo: "+rpgGenerator.getJugador2().getTipo());
 		barraVidaJ2 = new JProgressBar(0, 100);
 		barraVidaJ1 = new JProgressBar(0, 100);
 
@@ -72,8 +71,8 @@ public class PanelCombate extends JPanel implements Observer {
 		btnHabilidad2.setBounds(455, 265, 455, 120);
 		btnHabilidad3.setBounds(0, 385, 455, 120);
 		btnHabilidad4.setBounds(455, 385, 455, 120);
-		rivalNombreLabel.setBounds(400, -45, 455, 120);
-		personajeNombreLabel.setBounds(500, 190, 455, 120);
+		rivalNombreLabel.setBounds(10, -45, 455, 120);
+		personajeNombreLabel.setBounds(500, 180, 455, 120);
 
 	}
 

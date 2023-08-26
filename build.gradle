@@ -24,7 +24,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     //Dependencia al proyecto core
-     implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:cf537dc1cb'
+     implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:739403cade'
 	
 	
 }
