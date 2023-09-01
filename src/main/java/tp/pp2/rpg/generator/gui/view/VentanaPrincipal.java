@@ -20,8 +20,6 @@ public class VentanaPrincipal extends JFrame implements Observer{
 	}
 
 	private void initialize() {
-		//panelCombate=new PanelCombate(rpgGenerator);
-		//panelSelectorHabilidades = new PanelSelectorArchivoHabilidades(rpgGenerator,panelCombate);
 		panelCombate=new PanelCombate(this.rpgGenerator);
 		this.setBounds(100, 100, 1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

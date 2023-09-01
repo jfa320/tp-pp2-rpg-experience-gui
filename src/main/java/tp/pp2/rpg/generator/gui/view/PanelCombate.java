@@ -31,8 +31,10 @@ public class PanelCombate extends JPanel implements Observer {
 
 	public PanelCombate(RpgGenerator rpgGenerator) {
 		this.rpgGenerator = rpgGenerator;
+
 		this.initialize();
 		panelCombateController=new PanelCombateController(this,this.rpgGenerator);
+
 	}
 
 	private void initialize() {

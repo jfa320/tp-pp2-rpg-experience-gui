@@ -13,28 +13,21 @@ public class PanelCombateController implements Observer {
 	public PanelCombateController(PanelCombate panelCombate, RpgGenerator rpgGenerator) {
 		this.panelCombate = panelCombate;
 		this.rpgGenerator = rpgGenerator;
-		initialize();
+		this.initialize();
 	}
 
 	private void initialize() {
 		rpgGenerator.addObserver(this);
-
-		/*this.panelSelectorArchivoHabilidades.getBtnCargaArchivo().addActionListener(e -> {
-			this.panelSelectorArchivoHabilidades.getSelectorArchivos().showOpenDialog(null);
-			archivo = this.panelSelectorArchivoHabilidades.getSelectorArchivos().getSelectedFile();
-			// TODO: estaria correcto hacer esto?
-			asignadorHabilidades.setArchivoLeido(true);
-		});*/
 		asignarNombreHabilidadesBotones();
 		asignarFuncionalidadHabilidadesBotones();
 	}
 
 	private void asignarNombreHabilidadesBotones() {
 		rpgGenerator.getJugador1().getHabilidades().stream().forEach(e->System.out.println(e.getNombre()));
-		this.panelCombate.getBtnHabilidad1().setText(rpgGenerator.getJugador1().getHabilidades().get(0).getNombre()+" (daño: "+rpgGenerator.getJugador1().getHabilidades().get(0).getDanio()+")");
-		this.panelCombate.getBtnHabilidad2().setText(rpgGenerator.getJugador1().getHabilidades().get(1).getNombre()+" (daño: "+rpgGenerator.getJugador1().getHabilidades().get(1).getDanio()+")");
-		this.panelCombate.getBtnHabilidad3().setText(rpgGenerator.getJugador1().getHabilidades().get(2).getNombre()+" (daño: "+rpgGenerator.getJugador1().getHabilidades().get(2).getDanio()+")");
-		this.panelCombate.getBtnHabilidad4().setText(rpgGenerator.getJugador1().getHabilidades().get(3).getNombre()+" (daño: "+rpgGenerator.getJugador1().getHabilidades().get(3).getDanio()+")");
+		this.panelCombate.getBtnHabilidad1().setText(rpgGenerator.getJugador1().getHabilidades().get(0).getNombre()+" (daï¿½o: "+rpgGenerator.getJugador1().getHabilidades().get(0).getDanio()+")");
+		this.panelCombate.getBtnHabilidad2().setText(rpgGenerator.getJugador1().getHabilidades().get(1).getNombre()+" (daï¿½o: "+rpgGenerator.getJugador1().getHabilidades().get(1).getDanio()+")");
+		this.panelCombate.getBtnHabilidad3().setText(rpgGenerator.getJugador1().getHabilidades().get(2).getNombre()+" (daï¿½o: "+rpgGenerator.getJugador1().getHabilidades().get(2).getDanio()+")");
+		this.panelCombate.getBtnHabilidad4().setText(rpgGenerator.getJugador1().getHabilidades().get(3).getNombre()+" (daï¿½o: "+rpgGenerator.getJugador1().getHabilidades().get(3).getDanio()+")");
 	}
 
 	private void asignarFuncionalidadHabilidadesBotones() {
