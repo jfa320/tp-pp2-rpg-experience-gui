@@ -8,7 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgGenerator;
+
+import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgBattleGenerator;
 import tp.pp2.rpg.generator.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
@@ -24,17 +25,16 @@ public class PanelCombate extends JPanel implements Observer {
 	private JProgressBar barraVidaJ1;
 	private JProgressBar barraVidaJ2;
 
-	private RpgGenerator rpgGenerator;
+	private RpgBattleGenerator rpgGenerator;
 	private PanelCombateController panelCombateController;
 	
 	private JLabel resultadoCombate;
 
-	public PanelCombate(RpgGenerator rpgGenerator) {
+	public PanelCombate(RpgBattleGenerator rpgGenerator) {
 		this.rpgGenerator = rpgGenerator;
 
 		this.initialize();
 		panelCombateController=new PanelCombateController(this,this.rpgGenerator);
-
 	}
 
 	private void initialize() {
@@ -45,9 +45,9 @@ public class PanelCombate extends JPanel implements Observer {
 		btnHabilidad3 = new JButton();
 		btnHabilidad4 = new JButton();
 		personajeNombreLabel = new JLabel();
-		personajeNombreLabel.setText(rpgGenerator.getJugador1().getNombrePersonaje()+ " | Tipo: "+rpgGenerator.getJugador2().getTipo());
+		personajeNombreLabel.setText(rpgGenerator.getCombate().getPersonaje1().getNombre()+ " | Tipo: "+rpgGenerator.getCombate().getPersonaje2().getTipo());
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(rpgGenerator.getJugador2().getNombrePersonaje() + " | Tipo: "+rpgGenerator.getJugador2().getTipo());
+		rivalNombreLabel.setText(rpgGenerator.getCombate().getPersonaje2().getNombre() + " | Tipo: "+rpgGenerator.getCombate().getPersonaje2().getTipo());
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -61,18 +61,18 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		barraVidaJ1.setValue(100);
+		barraVidaJ1.setValue(rpgGenerator.getCombate().getPersonaje1().getVidaActual());
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(rpgGenerator.getJugador1().getVida() + "/100");
+		barraVidaJ1.setString(rpgGenerator.getCombate().getPersonaje1().getVidaActual()  + "/"+rpgGenerator.getCombate().getPersonaje1().getVidaInicial());
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		barraVidaJ2.setValue(100);
+		barraVidaJ2.setValue(rpgGenerator.getCombate().getPersonaje2().getVidaActual());
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(rpgGenerator.getJugador2().getVida()  + "/100");
+		barraVidaJ2.setString(rpgGenerator.getCombate().getPersonaje2().getVidaActual()  + "/"+rpgGenerator.getCombate().getPersonaje2().getVidaInicial());
 		this.add(barraVidaJ2);
 		btnHabilidad1.setBounds(0, 265, 455, 120);
 		btnHabilidad2.setBounds(455, 265, 455, 120);
@@ -150,12 +150,12 @@ public class PanelCombate extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		barraVidaJ2.setValue(rpgGenerator.getJugador2().getVida());
-		barraVidaJ2.setString(rpgGenerator.getJugador2().getVida() + "/100");
+		barraVidaJ2.setValue(rpgGenerator.getCombate().getPersonaje2().getVidaActual());
+		barraVidaJ2.setString(rpgGenerator.getCombate().getPersonaje2().getVidaActual() + "/"+rpgGenerator.getCombate().getPersonaje2().getVidaInicial());
 		
 		if(rpgGenerator.getCombate().getBatallaFinalizada()) {
 			String mensajeVictoria;
-			if(rpgGenerator.getCombate().getVictoriaJugador()) {
+			if(rpgGenerator.getCombate().getVictoriaJugador()=="J1") {
 				mensajeVictoria="Gana el Jugador";
 			}else {
 				mensajeVictoria="Gana la maquina";

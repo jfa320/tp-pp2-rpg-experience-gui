@@ -5,16 +5,17 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
-import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgGenerator;
+import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgBattleGenerator;
+
 
 
 public class VentanaPrincipal extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private PanelCombate panelCombate;
-	private RpgGenerator rpgGenerator;
+	private RpgBattleGenerator rpgGenerator;
 
-	public VentanaPrincipal(RpgGenerator rpgGenerator) {
+	public VentanaPrincipal(RpgBattleGenerator rpgGenerator) {
 		this.rpgGenerator=rpgGenerator;
 		initialize();
 	}
