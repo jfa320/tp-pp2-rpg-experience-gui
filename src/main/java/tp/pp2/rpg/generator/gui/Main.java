@@ -6,7 +6,6 @@ import tp.pp2.rpg.generator.gui.view.VentanaPrincipal;
 public class Main {
     public static void main(String[] args) {
     	RpgBattleGenerator rpgGenerator= new RpgBattleGenerator(args[0]);
-    	System.out.println(rpgGenerator.getEnfrentamiento().getPersonaje1().toString());
     	VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(rpgGenerator);
     	ventanaPrincipal.mostrar();
     }

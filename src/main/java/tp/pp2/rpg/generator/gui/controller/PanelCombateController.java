@@ -51,7 +51,7 @@ public class PanelCombateController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//TODO
+		//TODO Auto-generated method stub
 	}
 
 }

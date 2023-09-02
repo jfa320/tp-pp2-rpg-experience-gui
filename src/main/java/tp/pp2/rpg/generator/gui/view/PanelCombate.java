@@ -52,6 +52,7 @@ public class PanelCombate extends JPanel implements Observer {
 		barraVidaJ2 = new JProgressBar(0, 100);
 		barraVidaJ1 = new JProgressBar(0, 100);
 
+		//TODO quizas conviene agregar botones de forma dinamica
 		this.add(btnHabilidad1);
 		this.add(btnHabilidad2);
 		this.add(btnHabilidad3);
@@ -60,14 +61,18 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		barraVidaJ1.setValue(rpgGenerator.getEnfrentamiento().getPersonaje1().getVidaActual());
+		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
+		double vidaMostrarJ1=100*((double)rpgGenerator.getEnfrentamiento().getPersonaje1().getVidaActual()/rpgGenerator.getEnfrentamiento().getPersonaje1().getVidaInicial());
+		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
 		barraVidaJ1.setString(rpgGenerator.getEnfrentamiento().getPersonaje1().getVidaActual()  + "/"+rpgGenerator.getEnfrentamiento().getPersonaje1().getVidaInicial());
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		barraVidaJ2.setValue(rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual());
+		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
+		double vidaMostrarJ2=100*((double)rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual()/rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaInicial());
+		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
@@ -149,10 +154,12 @@ public class PanelCombate extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		barraVidaJ2.setValue(rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual());
+		//TODO idem pregunta arriba
+		double vidaMostrarJ2=100*((double)rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual()/rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaInicial());
+		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setString(rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual() + "/"+rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaInicial());
 		
-		//TODO esta logica no deberia estar aca. 
+		//TODO esta logica no deberia estar aca. Ver donde ubicarla y como
 		if(rpgGenerator.getEnfrentamiento().getBatallaFinalizada()) {
 			String mensajeVictoria;
 			if(rpgGenerator.getEnfrentamiento().getVictoriaJugador()=="J1") {
