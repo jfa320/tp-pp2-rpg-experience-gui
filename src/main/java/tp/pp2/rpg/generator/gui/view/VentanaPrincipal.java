@@ -17,11 +17,11 @@ public class VentanaPrincipal extends JFrame implements Observer{
 
 	public VentanaPrincipal(RpgBattleGenerator rpgGenerator) {
 		this.rpgGenerator=rpgGenerator;
+		panelCombate=new PanelCombate(this.rpgGenerator);
 		initialize();
 	}
 
 	private void initialize() {
-		panelCombate=new PanelCombate(this.rpgGenerator);
 		this.setBounds(100, 100, 1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);

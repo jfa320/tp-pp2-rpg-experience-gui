@@ -25,7 +25,8 @@ dependencies {
 
     //Dependencia al proyecto core
    // implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:2abe307f82'
-	implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:58842ff958'
+	implementation 'com.github.jfa320:tp-pp2-rpg-generator-core:59a8997ff0'
+	
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

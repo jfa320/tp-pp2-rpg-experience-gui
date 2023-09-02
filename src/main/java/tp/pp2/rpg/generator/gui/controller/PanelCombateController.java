@@ -23,27 +23,28 @@ public class PanelCombateController implements Observer {
 	}
 
 	private void asignarNombreHabilidadesBotones() {
-		rpgGenerator.getCombate().getPersonaje1().getHabilidades().stream().forEach(e->System.out.println(e.getNombre()));
+		rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().stream().forEach(e->System.out.println(e.getNombre()));
 		//TODO mejorar esto para evitar repeticion de codigo
-		this.panelCombate.getBtnHabilidad1().setText(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(0).getNombre()+" (da�o: "+rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(0).getDanio()+")");
-		this.panelCombate.getBtnHabilidad2().setText(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(1).getNombre()+" (da�o: "+rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(1).getDanio()+")");
+		this.panelCombate.getBtnHabilidad1().setText(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0).getNombre()+" (da�o: "+rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0).getDanio()+")");
+		this.panelCombate.getBtnHabilidad2().setText(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1).getNombre()+" (da�o: "+rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1).getDanio()+")");
 	}
 
 	private void asignarFuncionalidadHabilidadesBotones() {
+		//TODO: DRY mejorar para evitar repiticion
 		this.panelCombate.getBtnHabilidad1().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(0));
+			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0));
 			rpgGenerator.validarCombate();
 		});
 		this.panelCombate.getBtnHabilidad2().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(1));
+			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1));
 			rpgGenerator.validarCombate();
 		});
 		this.panelCombate.getBtnHabilidad3().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(2));
+			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(2));
 			rpgGenerator.validarCombate();
 		});
 		this.panelCombate.getBtnHabilidad4().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getCombate().getPersonaje1().getHabilidades().get(3));
+			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(3));
 			rpgGenerator.validarCombate();
 		});
 	}
