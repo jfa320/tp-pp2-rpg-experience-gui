@@ -152,6 +152,7 @@ public class PanelCombate extends JPanel implements Observer {
 		barraVidaJ2.setValue(rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual());
 		barraVidaJ2.setString(rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaActual() + "/"+rpgGenerator.getEnfrentamiento().getPersonaje2().getVidaInicial());
 		
+		//TODO esta logica no deberia estar aca. 
 		if(rpgGenerator.getEnfrentamiento().getBatallaFinalizada()) {
 			String mensajeVictoria;
 			if(rpgGenerator.getEnfrentamiento().getVictoriaJugador()=="J1") {
@@ -159,7 +160,7 @@ public class PanelCombate extends JPanel implements Observer {
 			}else {
 				mensajeVictoria="Gana la maquina";
 			}
-			resultadoCombate.setText(mensajeVictoria);
+			this.resultadoCombate.setText(mensajeVictoria);
 		}
 	}
 
