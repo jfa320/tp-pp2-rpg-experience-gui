@@ -46,7 +46,11 @@ public class PanelCombateController implements Observer {
 
 	private void bloquearBotonesSinUso() {
 		// TODO Auto-generated method stub
-
+		this.panelCombate.getBotonesHabilidades().forEach(btn->{
+			if(btn.getActionListeners().length==0) {
+				btn.setEnabled(false);
+			}
+		});
 	}
 
 	@Override

@@ -84,7 +84,7 @@ public class PanelCombate extends JPanel implements Observer {
 		rivalNombreLabel.setBounds(10, -45, 455, 120);
 		personajeNombreLabel.setBounds(500, 180, 455, 120);
 		resultadoCombate.setBounds(400, 500, 455, 120);
-		//this.botonesHabilidades.forEach(btn -> btn.setEnabled(false));
+		
 	}
 
 	
@@ -140,6 +140,7 @@ public class PanelCombate extends JPanel implements Observer {
 			String mensajeVictoria;
 			mensajeVictoria=rpgGenerator.getBatalla().getPersonajeGanadorId()==1 ? "Gana J1":"Gana J2";
 			this.resultadoCombate.setText(mensajeVictoria);
+			this.botonesHabilidades.forEach(btn -> btn.setEnabled(false));
 		}
 	}
 
