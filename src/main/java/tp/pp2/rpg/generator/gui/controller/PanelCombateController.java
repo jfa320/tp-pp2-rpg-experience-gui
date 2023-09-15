@@ -20,38 +20,38 @@ public class PanelCombateController implements Observer {
 		rpgGenerator.addObserver(this);
 		asignarNombreHabilidadesBotones();
 		asignarFuncionalidadHabilidadesBotones();
+		bloquearBotonesSinUso();
 	}
 
 	private void asignarNombreHabilidadesBotones() {
-		rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().stream().forEach(e->System.out.println(e.getNombre()));
-		//TODO mejorar esto para evitar repeticion de codigo
-		this.panelCombate.getBtnHabilidad1().setText(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0).getNombre()+" (da�o: "+rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0).getDanio()+")");
-		this.panelCombate.getBtnHabilidad2().setText(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1).getNombre()+" (da�o: "+rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1).getDanio()+")");
+		for (int i = 0; i < this.panelCombate.getBotonesHabilidades().size(); i++) {
+			if (rpgGenerator.getHabilidades().size() > i) {
+				this.panelCombate.getBotonesHabilidades().get(i)
+						.setText(rpgGenerator.getHabilidades().get(i).getDescripcion());
+			}
+		}
 	}
 
 	private void asignarFuncionalidadHabilidadesBotones() {
-		//TODO: DRY mejorar para evitar repiticion
-		this.panelCombate.getBtnHabilidad1().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(0));
-			rpgGenerator.validarCombate();
-		});
-		this.panelCombate.getBtnHabilidad2().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(1));
-			rpgGenerator.validarCombate();
-		});
-		this.panelCombate.getBtnHabilidad3().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(2));
-			rpgGenerator.validarCombate();
-		});
-		this.panelCombate.getBtnHabilidad4().addActionListener(e->{ 
-			rpgGenerator.ejecutarHabilidad(rpgGenerator.getEnfrentamiento().getPersonaje1().getHabilidades().get(3));
-			rpgGenerator.validarCombate();
-		});
+		for (int i = 0; i < this.panelCombate.getBotonesHabilidades().size(); i++) {
+			final int index = i;
+			if (index < rpgGenerator.getHabilidades().size()) {
+				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
+					rpgGenerator.jugar(rpgGenerator.getHabilidades().get(index), rpgGenerator.getPersonajes().get(0),
+							rpgGenerator.getPersonajes().get(1));
+				});
+			}
+		}
+	}
+
+	private void bloquearBotonesSinUso() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 
 }
