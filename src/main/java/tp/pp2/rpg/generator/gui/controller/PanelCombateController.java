@@ -3,14 +3,14 @@ package tp.pp2.rpg.generator.gui.controller;
 import java.util.Observable;
 import java.util.Observer;
 
-import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgBattleGenerator;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
 import tp.pp2.rpg.generator.gui.view.PanelCombate;
 
 public class PanelCombateController implements Observer {
 	private PanelCombate panelCombate;
-	private RpgBattleGenerator rpgGenerator;
+	private RpgBattleExperience rpgGenerator;
 
-	public PanelCombateController(PanelCombate panelCombate, RpgBattleGenerator rpgGenerator) {
+	public PanelCombateController(PanelCombate panelCombate, RpgBattleExperience rpgGenerator) {
 		this.panelCombate = panelCombate;
 		this.rpgGenerator = rpgGenerator;
 		this.initialize();
@@ -37,8 +37,12 @@ public class PanelCombateController implements Observer {
 			final int index = i;
 			if (index < rpgGenerator.getHabilidades().size()) {
 				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
-					rpgGenerator.jugar(rpgGenerator.getHabilidades().get(index), rpgGenerator.getPersonajes().get(0),
-							rpgGenerator.getPersonajes().get(1));
+					try {
+						rpgGenerator.jugar(rpgGenerator.getHabilidades().get(index));
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				});
 			}
 		}

@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import tp.pp2.rpg.generator.core.entidades.rpg.generator.RpgBattleGenerator;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
 import tp.pp2.rpg.generator.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
@@ -25,12 +25,12 @@ public class PanelCombate extends JPanel implements Observer {
 	private JProgressBar barraVidaJ1;
 	private JProgressBar barraVidaJ2;
 
-	private RpgBattleGenerator rpgGenerator;
+	private RpgBattleExperience rpgGenerator;
 	private PanelCombateController panelCombateController;
 	
 	private JLabel resultadoCombate;
 
-	public PanelCombate(RpgBattleGenerator rpgGenerator) {
+	public PanelCombate(RpgBattleExperience rpgGenerator) {
 		this.rpgGenerator = rpgGenerator;
 		this.initialize();
 		panelCombateController=new PanelCombateController(this,this.rpgGenerator);
@@ -61,21 +61,26 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(resultadoCombate);
 		// VIDAJ1
 		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
-		double vidaMostrarJ1=100*((double)rpgGenerator.getBatalla().getVidas().get(1)/rpgGenerator.getBatalla().getVidas().get(1));
+		
+		rpgGenerator.getBatalla().getContexto().getVidas().forEach((personaje, vida) -> {
+		    System.out.println("El Personaje " + personaje + " tiene " + vida + " vidas.");
+		});
+		
+		double vidaMostrarJ1=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre())/rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre()));
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(rpgGenerator.getBatalla().getVidas().get(1)+"/"+rpgGenerator.getBatalla().getVidas().get(1));
+		barraVidaJ1.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre())+"/"+rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre()));
 		this.add(barraVidaJ1);
 		// VIDAJ2
 		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
-		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getVidas().get(2)/rpgGenerator.getBatalla().getVidas().get(2));
+		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())/rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre()));
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(rpgGenerator.getBatalla().getVidas().get(2)+"/"+rpgGenerator.getBatalla().getVidas().get(2));
+		barraVidaJ2.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())+"/"+rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre()));
 		this.add(barraVidaJ2);
 		botonesHabilidades.get(0).setBounds(0, 265, 455, 120);
 		botonesHabilidades.get(1).setBounds(455, 265, 455, 120);
@@ -132,16 +137,16 @@ public class PanelCombate extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		//TODO idem pregunta arriba
-		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getVidas().get(2)/100);
+		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())/100);
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
-		barraVidaJ2.setString(rpgGenerator.getBatalla().getVidas().get(2)+"/"+100);
+		barraVidaJ2.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())+"/"+100);
 		
-		if(rpgGenerator.getBatalla().getPersonajeGanadorId()!=-1) {
+		/*if(rpgGenerator.getBatalla().getValidadorVictoria()!=-1) {
 			String mensajeVictoria;
-			mensajeVictoria=rpgGenerator.getBatalla().getPersonajeGanadorId()==1 ? "Gana J1":"Gana J2";
+			mensajeVictoria="Gana "+rpgGenerator.getNombreGanador();
 			this.resultadoCombate.setText(mensajeVictoria);
 			this.botonesHabilidades.forEach(btn -> btn.setEnabled(false));
-		}
+		}*/
 	}
 
 }
