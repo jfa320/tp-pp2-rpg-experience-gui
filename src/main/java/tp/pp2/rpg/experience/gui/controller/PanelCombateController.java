@@ -1,10 +1,10 @@
-package tp.pp2.rpg.generator.gui.controller;
+package tp.pp2.rpg.experience.gui.controller;
 
 import java.util.Observable;
 import java.util.Observer;
 
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
-import tp.pp2.rpg.generator.gui.view.PanelCombate;
+import tp.pp2.rpg.experience.gui.view.PanelCombate;
 
 public class PanelCombateController implements Observer {
 	private PanelCombate panelCombate;

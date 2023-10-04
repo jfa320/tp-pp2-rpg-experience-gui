@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.gui.view;
+package tp.pp2.rpg.experience.gui.view;
 
 import java.util.Observable;
 import java.util.Observer;

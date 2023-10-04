@@ -1,4 +1,4 @@
-package tp.pp2.rpg.generator.gui.view;
+package tp.pp2.rpg.experience.gui.view;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
-import tp.pp2.rpg.generator.gui.controller.PanelCombateController;
+import tp.pp2.rpg.experience.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
 
