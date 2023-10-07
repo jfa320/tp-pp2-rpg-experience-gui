@@ -25,9 +25,9 @@ public class PanelCombateController implements Observer {
 
 	private void asignarNombreHabilidadesBotones() {
 		for (int i = 0; i < this.panelCombate.getBotonesHabilidades().size(); i++) {
-			if (rpgGenerator.getHabilidades().size() > i) {
+			if (batalla.getHabilidades().size() > i) {
 				this.panelCombate.getBotonesHabilidades().get(i)
-						.setText(rpgGenerator.getHabilidades().get(i).getDescripcion());
+						.setText(batalla.getHabilidades().get(i).getNombre()+" | "+batalla.getHabilidades().get(i).getDescripcion());
 			}
 		}
 	}
@@ -35,10 +35,10 @@ public class PanelCombateController implements Observer {
 	private void asignarFuncionalidadHabilidadesBotones() {
 		for (int i = 0; i < this.panelCombate.getBotonesHabilidades().size(); i++) {
 			final int index = i;
-			if (index < rpgGenerator.getHabilidades().size()) {
+			if (index < batalla.getHabilidades().size()) {
 				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
 					try {
-						rpgGenerator.jugar(rpgGenerator.getHabilidades().get(index));
+						batalla.jugar(batalla.getHabilidades().get(index));
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

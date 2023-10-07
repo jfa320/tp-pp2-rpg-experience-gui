@@ -24,8 +24,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     //Dependencia al proyecto core
-  	implementation 'com.github.jfa320:tp-pp2-rpg-experience-core:6091cc5e95'
-	
+  	implementation 'com.github.jfa320:tp-pp2-rpg-experience-core:3e5fc69c14'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

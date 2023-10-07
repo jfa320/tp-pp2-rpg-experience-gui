@@ -47,9 +47,9 @@ public class PanelCombate extends JPanel implements Observer {
 		
 
 		personajeNombreLabel = new JLabel();
-		personajeNombreLabel.setText(rpgGenerator.getPersonajes().get(0).getNombre());
+		personajeNombreLabel.setText(batalla.getPersonajeNombre(0));
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(rpgGenerator.getPersonajes().get(1).getNombre());
+		rivalNombreLabel.setText(batalla.getPersonajeNombre(1));
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -62,27 +62,20 @@ public class PanelCombate extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
-		
-		rpgGenerator.getBatalla().getContexto().getVidas().forEach((personaje, vida) -> {
-		    System.out.println("El Personaje " + personaje + " tiene " + vida + " vidas.");
-		});
-		
-		double vidaMostrarJ1=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre())/rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre()));
+		double vidaMostrarJ1=100*((double)batalla.getPersonajeVida(0));
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre())+"/"+rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(0).getNombre()));
+		barraVidaJ1.setString(batalla.getPersonajeVida(0)+"/"+batalla.getPersonajeVida(0));
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		//TODO: Es correcto tener este calculo aca? Donde ubicarlo sino?
-		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())/rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre()));
+		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1));
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())+"/"+rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre()));
+		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+batalla.getPersonajeVida(1));
 		this.add(barraVidaJ2);
 		botonesHabilidades.get(0).setBounds(0, 265, 455, 120);
 		botonesHabilidades.get(1).setBounds(455, 265, 455, 120);
@@ -138,17 +131,17 @@ public class PanelCombate extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//TODO idem pregunta arriba
-		double vidaMostrarJ2=100*((double)rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())/100);
-		barraVidaJ2.setValue((int)vidaMostrarJ2);
-		barraVidaJ2.setString(rpgGenerator.getBatalla().getContexto().getVidas().get(rpgGenerator.getPersonajes().get(1).getNombre())+"/"+100);
 		
-		/*if(rpgGenerator.getBatalla().getValidadorVictoria()!=-1) {
+		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1)/100);
+		barraVidaJ2.setValue((int)vidaMostrarJ2);
+		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+100);
+		
+		if(batalla.getEstado().equals("FINALIZADA")) {
 			String mensajeVictoria;
-			mensajeVictoria="Gana "+rpgGenerator.getNombreGanador();
+			mensajeVictoria="Gana ";
 			this.resultadoCombate.setText(mensajeVictoria);
 			this.botonesHabilidades.forEach(btn -> btn.setEnabled(false));
-		}*/
+		}
 	}
 
 }
