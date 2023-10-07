@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
@@ -25,25 +25,27 @@ public class PanelCombate extends JPanel implements Observer {
 	private JProgressBar barraVidaJ1;
 	private JProgressBar barraVidaJ2;
 
-	private RpgBattleExperience rpgGenerator;
+	private Batalla batalla;
 	private PanelCombateController panelCombateController;
 	
 	private JLabel resultadoCombate;
 
-	public PanelCombate(RpgBattleExperience rpgGenerator) {
-		this.rpgGenerator = rpgGenerator;
+	public PanelCombate(Batalla batalla) {
+		this.batalla = batalla;
 		this.initialize();
-		panelCombateController=new PanelCombateController(this,this.rpgGenerator);
+		panelCombateController=new PanelCombateController(this,this.batalla);
 	}
 
 	private void initialize() {
-		rpgGenerator.addObserver(this);
+		batalla.addObserver(this);
 		botonesHabilidades=new ArrayList<JButton>();
 		
 		for(int i=0;i<4;i++) {
 			botonesHabilidades.add(new JButton());
 		}
+
 		
+
 		personajeNombreLabel = new JLabel();
 		personajeNombreLabel.setText(rpgGenerator.getPersonajes().get(0).getNombre());
 		rivalNombreLabel = new JLabel();

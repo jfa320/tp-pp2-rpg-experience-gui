@@ -3,21 +3,21 @@ package tp.pp2.rpg.experience.gui.controller;
 import java.util.Observable;
 import java.util.Observer;
 
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.RpgBattleExperience;
+import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.gui.view.PanelCombate;
 
 public class PanelCombateController implements Observer {
 	private PanelCombate panelCombate;
-	private RpgBattleExperience rpgGenerator;
+	private Batalla batalla;
 
-	public PanelCombateController(PanelCombate panelCombate, RpgBattleExperience rpgGenerator) {
+	public PanelCombateController(PanelCombate panelCombate, Batalla batalla) {
 		this.panelCombate = panelCombate;
-		this.rpgGenerator = rpgGenerator;
+		this.batalla = batalla;
 		this.initialize();
 	}
 
 	private void initialize() {
-		rpgGenerator.addObserver(this);
+		batalla.addObserver(this);
 		asignarNombreHabilidadesBotones();
 		asignarFuncionalidadHabilidadesBotones();
 		bloquearBotonesSinUso();
