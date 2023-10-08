@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 import tp.pp2.rpg.experience.gui.controller.PanelCombateController;
 
 public class PanelCombate extends JPanel implements Observer {
@@ -129,21 +131,25 @@ public class PanelCombate extends JPanel implements Observer {
 		this.barraVidaJ2 = barraVidaJ2;
 	}
 
+	public JLabel getResultadoCombate() {
+		return resultadoCombate;
+	}
+
+	public void setResultadoCombate(String resultadoCombate) {
+		this.resultadoCombate.setText(resultadoCombate);
+	}
+
 	@Override
 	public void update(Observable o, Object arg) {
 		
 		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1)/100);
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+100);
+		
 		if(batalla.getPersonajeActual()!=batalla.getPersonajeNombre(0)) {
-			botonesHabilidades.forEach(b->b.setEnabled(false));
+			//botonesHabilidades.forEach(b->b.setEnabled(false));
 		}
-		if(batalla.getEstado().equals("FINALIZADA")) {
-			String mensajeVictoria;
-			mensajeVictoria="Gana ";
-			this.resultadoCombate.setText(mensajeVictoria);
-			this.botonesHabilidades.forEach(btn -> btn.setEnabled(false));
-		}
+		
 	}
 
 }

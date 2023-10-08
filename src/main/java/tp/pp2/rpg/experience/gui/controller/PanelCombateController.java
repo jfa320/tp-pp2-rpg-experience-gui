@@ -4,6 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
+import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 import tp.pp2.rpg.experience.gui.view.PanelCombate;
 
 public class PanelCombateController implements Observer {
@@ -59,7 +61,13 @@ public class PanelCombateController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		System.out.println(batalla.getEstado());
+		if(batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
+			String ganador=new ObtenedorGanador().obtenerGanador(batalla);
+			String mensajeVictoria="Gana " + ganador;
+			this.panelCombate.setResultadoCombate(mensajeVictoria);
+			this.panelCombate.getBotonesHabilidades().forEach(btn -> btn.setEnabled(false));
+		}
 	}
 
 }
