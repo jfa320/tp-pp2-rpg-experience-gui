@@ -1,7 +1,12 @@
 package tp.pp2.rpg.experience.gui.controller;
 
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
@@ -59,14 +64,52 @@ public class PanelCombateController implements Observer {
 		});
 	}
 
+	private void actualizarVidas(){
+		double vidaMostrar=100*((double)batalla.getPersonajeVida(0)/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 0);
+		
+		vidaMostrar=100*((double)batalla.getPersonajeVida(1)/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 1);
+	}
+
+	private void actualizarVidasAux(JProgressBar bararVida, double nuevaVida,int indexPersonaje){
+		bararVida.setValue((int)nuevaVida);
+		bararVida.setString(batalla.getPersonajeVida(indexPersonaje)+"/"+ 100);
+	}
+
+	private void transicionTurno(){
+		Rectangle nombreAux = panelCombate.getPersonajeNombreLabel().getBounds();
+		panelCombate.getPersonajeNombreLabel().setBounds(panelCombate.getRivalNombreLabel().getBounds());
+		panelCombate.getRivalNombreLabel().setBounds(nombreAux);
+
+		Rectangle barraAux = panelCombate.getBarraVidaJ1().getBounds();
+		panelCombate.getBarraVidaJ1().setBounds(panelCombate.getBarraVidaJ2().getBounds());
+		panelCombate.getBarraVidaJ2().setBounds(barraAux);
+	}
+
+	private void transicion(){
+		Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+               transicionTurno(); 
+            }
+        }, 1500);
+	}
+
 	@Override
 	public void update(Observable o, Object arg) {
 		
 		if(batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
+			actualizarVidas();
 			String ganador=new ObtenedorGanador().obtenerGanador(batalla);
 			String mensajeVictoria="Gana " + ganador;
 			this.panelCombate.setResultadoCombate(mensajeVictoria);
 			this.panelCombate.getBotonesHabilidades().forEach(btn -> btn.setEnabled(false));
+		}
+		else{
+			actualizarVidas();
+			transicion();	
 		}
 	}
 
