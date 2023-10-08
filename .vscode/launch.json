@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "tp.pp2.rpg.experience.gui.Main",
             "projectName": "tp-pp2-rpg-experience-gui",
-            "args":"C:\\Users\\martin\\Desktop\\tp-pp2-rpg-experience-core\\src\\main\\resources\\config.properties"
+            "args":"RPGExpConfig\\config.properties" 
         }
     ]
 }
