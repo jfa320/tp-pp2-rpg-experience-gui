@@ -61,7 +61,7 @@ public class PanelCombateController implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println(batalla.getEstado());
+		
 		if(batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
 			String ganador=new ObtenedorGanador().obtenerGanador(batalla);
 			String mensajeVictoria="Gana " + ganador;
