@@ -27,7 +27,7 @@ public class PanelCombateController implements Observer {
 		batalla.addObserver(this);
 		asignarNombreHabilidadesBotones();
 		asignarFuncionalidadHabilidadesBotones();
-		bloquearBotonesSinUso();
+		bloquearBotonesSinHabilidad();
 	}
 
 	private void asignarNombreHabilidadesBotones() {
@@ -45,9 +45,9 @@ public class PanelCombateController implements Observer {
 			if (index < batalla.getHabilidades().size()) {
 				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
 					try {
+						panelCombate.getBotonesHabilidades().get(index).setEnabled(false);
 						batalla.jugar(batalla.getHabilidades().get(index));
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				});
@@ -55,11 +55,18 @@ public class PanelCombateController implements Observer {
 		}
 	}
 
-	private void bloquearBotonesSinUso() {
-		// TODO Auto-generated method stub
+	private void bloquearBotonesSinHabilidad() {
 		this.panelCombate.getBotonesHabilidades().forEach(btn->{
 			if(btn.getActionListeners().length==0) {
 				btn.setEnabled(false);
+			}
+		});
+	}
+
+	private void activarBotonesHabilidad() {
+		this.panelCombate.getBotonesHabilidades().forEach(btn->{
+			if(btn.getActionListeners().length>0) {
+				btn.setEnabled(true);
 			}
 		});
 	}
@@ -89,10 +96,12 @@ public class PanelCombateController implements Observer {
 
 	private void transicion(){
 		Timer timer = new Timer();
+	
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-               transicionTurno(); 
+               transicionTurno();
+			   activarBotonesHabilidad(); 
             }
         }, 1500);
 	}
