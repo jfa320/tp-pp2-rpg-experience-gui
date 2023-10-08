@@ -141,10 +141,7 @@ public class PanelCombate extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		/* 
-		if(batalla.getPersonajeActual()!=batalla.getPersonajeNombre(0)) {
-			//botonesHabilidades.forEach(b->b.setEnabled(false));
-		}*/
+	
 	}
 
 }
