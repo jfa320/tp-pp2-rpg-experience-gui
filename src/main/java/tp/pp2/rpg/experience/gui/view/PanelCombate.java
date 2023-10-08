@@ -135,7 +135,9 @@ public class PanelCombate extends JPanel implements Observer {
 		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1)/100);
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+100);
-		
+		if(batalla.getPersonajeActual()!=batalla.getPersonajeNombre(0)) {
+			botonesHabilidades.forEach(b->b.setEnabled(false));
+		}
 		if(batalla.getEstado().equals("FINALIZADA")) {
 			String mensajeVictoria;
 			mensajeVictoria="Gana ";
