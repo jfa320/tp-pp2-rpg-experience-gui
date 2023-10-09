@@ -11,12 +11,12 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 public class VentanaPrincipal extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
-	private PanelCombate panelCombate;
+	private PanelBatalla panelCombate;
 	private Batalla batalla;
 
 	public VentanaPrincipal(Batalla batalla) {
 		this.batalla=batalla;
-		panelCombate=new PanelCombate(this.batalla);
+		panelCombate=new PanelBatalla(this.batalla);
 		initialize();
 	}
 

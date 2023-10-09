@@ -11,13 +11,13 @@ import javax.swing.JProgressBar;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
-import tp.pp2.rpg.experience.gui.view.PanelCombate;
+import tp.pp2.rpg.experience.gui.view.PanelBatalla;
 
-public class PanelCombateController implements Observer {
-	private PanelCombate panelCombate;
+public class PanelBatallaController implements Observer {
+	private PanelBatalla panelCombate;
 	private Batalla batalla;
 
-	public PanelCombateController(PanelCombate panelCombate, Batalla batalla) {
+	public PanelBatallaController(PanelBatalla panelCombate, Batalla batalla) {
 		this.panelCombate = panelCombate;
 		this.batalla = batalla;
 		this.initialize();

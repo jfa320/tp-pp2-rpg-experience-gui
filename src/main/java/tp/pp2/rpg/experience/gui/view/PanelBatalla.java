@@ -14,9 +14,9 @@ import javax.swing.JProgressBar;
 import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
 import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
-import tp.pp2.rpg.experience.gui.controller.PanelCombateController;
+import tp.pp2.rpg.experience.gui.controller.PanelBatallaController;
 
-public class PanelCombate extends JPanel implements Observer {
+public class PanelBatalla extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,14 +28,14 @@ public class PanelCombate extends JPanel implements Observer {
 	private JProgressBar barraVidaJ2;
 
 	private Batalla batalla;
-	private PanelCombateController panelCombateController;
+	private PanelBatallaController panelCombateController;
 	
 	private JLabel resultadoCombate;
 
-	public PanelCombate(Batalla batalla) {
+	public PanelBatalla(Batalla batalla) {
 		this.batalla = batalla;
 		this.initialize();
-		panelCombateController=new PanelCombateController(this,this.batalla);
+		panelCombateController=new PanelBatallaController(this,this.batalla);
 	}
 
 	private void initialize() {
