@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame implements Observer{
 		this.setBounds(100, 100, 1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
+		this.setTitle("RPG Battle Experience");
 		this.setPanelCombate();
 	}
 
