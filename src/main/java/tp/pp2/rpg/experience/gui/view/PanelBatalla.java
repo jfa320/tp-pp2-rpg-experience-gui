@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
-import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 import tp.pp2.rpg.experience.gui.controller.PanelBatallaController;
 
 public class PanelBatalla extends JPanel implements Observer {
