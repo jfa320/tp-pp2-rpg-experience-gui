@@ -1,11 +1,14 @@
 package tp.pp2.rpg.experience.gui.controller;
 
 import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
@@ -39,13 +42,23 @@ public class PanelBatallaController implements Observer {
 		}
 	}
 
+	private void clearHabilidades(){
+		panelCombate.getBotonesHabilidades().forEach(b -> {
+			
+			for(ActionListener a : b.getActionListeners())
+				b.removeActionListener(a);
+			
+			b.setText("");
+		});
+	}
+
 	private void asignarFuncionalidadHabilidadesBotones() {
 		for (int i = 0; i < this.panelCombate.getBotonesHabilidades().size(); i++) {
 			final int index = i;
 			if (index < batalla.getHabilidades().size()) {
 				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
 					try {
-						panelCombate.getBotonesHabilidades().get(index).setEnabled(false);
+						botonesHabilidadVisible(false);
 						batalla.jugar(batalla.getHabilidades().get(index));
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -63,10 +76,10 @@ public class PanelBatallaController implements Observer {
 		});
 	}
 
-	private void activarBotonesHabilidad() {
+	private void botonesHabilidadVisible(boolean b) {
 		this.panelCombate.getBotonesHabilidades().forEach(btn->{
 			if(btn.getActionListeners().length>0) {
-				btn.setEnabled(true);
+				btn.setEnabled(b);
 			}
 		});
 	}
@@ -74,7 +87,7 @@ public class PanelBatallaController implements Observer {
 	private void actualizarVidas(){
 		double vidaMostrar=100*((double)batalla.getPersonajeVida(0)/100);
 		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 0);
-		
+
 		vidaMostrar=100*((double)batalla.getPersonajeVida(1)/100);
 		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 1);
 	}
@@ -101,13 +114,25 @@ public class PanelBatallaController implements Observer {
             @Override
             public void run() {
                transicionTurno();
-			   activarBotonesHabilidad(); 
+			   botonesHabilidadVisible(true);
             }
         }, 1500);
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
+		
+		if (batalla.getEstado().equals(EstadoBatalla.INICIADA)){
+			clearHabilidades();
+			asignarNombreHabilidadesBotones();
+			asignarFuncionalidadHabilidadesBotones();
+			botonesHabilidadVisible(true);
+		}
+
+		if(batalla.getEstado().equals(EstadoBatalla.EN_PROGRESO)){
+			actualizarVidas();
+			transicion();
+		}
 		
 		if(batalla.getEstado().equals(EstadoBatalla.FINALIZADA)) {
 			actualizarVidas();
@@ -116,10 +141,5 @@ public class PanelBatallaController implements Observer {
 			this.panelCombate.setResultadoCombate(mensajeVictoria);
 			this.panelCombate.getBotonesHabilidades().forEach(btn -> btn.setEnabled(false));
 		}
-		else{
-			actualizarVidas();
-			transicion();	
-		}
 	}
-
 }

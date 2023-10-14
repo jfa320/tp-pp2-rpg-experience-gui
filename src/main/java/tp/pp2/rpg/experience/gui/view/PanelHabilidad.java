@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.gui.BotonListener;
 import tp.pp2.rpg.experience.gui.controller.PanelHabilidadController;
 
 public class PanelHabilidad extends JPanel {
@@ -13,9 +15,9 @@ public class PanelHabilidad extends JPanel {
     private JButton iniciarBatalla;
     private JTextArea campoTexto;
 
-    public PanelHabilidad(){
+    public PanelHabilidad(Batalla batalla){
         initialize();
-        panelHabilidadController = new PanelHabilidadController(this);
+        panelHabilidadController = new PanelHabilidadController(this,batalla);
     }
 
     private void initialize(){
@@ -43,6 +45,10 @@ public class PanelHabilidad extends JPanel {
 
     public JTextArea getCampoTexto(){
         return campoTexto; 
+    }
+
+    public void registerListener(BotonListener b){
+        panelHabilidadController.registerListener(b);
     }
     
 }

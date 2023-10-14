@@ -1,25 +1,25 @@
 package tp.pp2.rpg.experience.gui.view;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
+import tp.pp2.rpg.experience.gui.BotonListener;
 
 
-public class VentanaPrincipal extends JFrame implements Observer{
+public class VentanaPrincipal extends JFrame implements BotonListener{
 
 	private static final long serialVersionUID = 1L;
 	private PanelBatalla panelCombate;
 	private PanelHabilidad panelHabilidad;
 	private Batalla batalla;
+	
 
 	public VentanaPrincipal(Batalla batalla) {
 		this.batalla=batalla;
 		panelCombate=new PanelBatalla(this.batalla);
-		panelHabilidad = new PanelHabilidad();
+		panelHabilidad = new PanelHabilidad(this.batalla);
+		panelHabilidad.registerListener(this);
 		initialize();
 	}
 
@@ -42,7 +42,7 @@ public class VentanaPrincipal extends JFrame implements Observer{
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void botonEjecutado() {
+		this.setPanel(panelCombate);
 	}
-
 }
