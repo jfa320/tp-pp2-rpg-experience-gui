@@ -14,6 +14,7 @@ public class PanelHabilidad extends JPanel {
     private JButton botonCargaHabilidad;
     private JButton iniciarBatalla;
     private JTextArea campoTexto;
+    private JTextArea mensajeError;
 
     public PanelHabilidad(Batalla batalla){
         initialize();
@@ -25,13 +26,17 @@ public class PanelHabilidad extends JPanel {
         iniciarBatalla = new JButton();
         campoTexto = new JTextArea();
         campoTexto.setEditable(false);
+        mensajeError = new JTextArea();
+        mensajeError.setEditable(false);
 
         botonCargaHabilidad.setBounds(0, 265, 455, 120);
         iniciarBatalla.setBounds(0, 500, 455, 120);     
-        campoTexto.setBounds(500, 265, 500, 520);      
+        campoTexto.setBounds(500, 265, 500, 520);
+        mensajeError.setBounds(220, 100,600, 30);      
 
         this.add(botonCargaHabilidad);
         this.add(campoTexto);
+        this.add(mensajeError);
         this.add(iniciarBatalla);
     }
 
@@ -45,6 +50,10 @@ public class PanelHabilidad extends JPanel {
 
     public JTextArea getCampoTexto(){
         return campoTexto; 
+    }
+
+    public JTextArea getMensajeError(){
+        return mensajeError; 
     }
 
     public void registerListener(BotonListener b){
