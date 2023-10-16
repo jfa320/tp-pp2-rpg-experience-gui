@@ -61,6 +61,13 @@ public class PanelHabilidadController implements Observer {
                 listeners.forEach(l -> l.botonEjecutado());
             }
         });
+
+        mostrarHabilidadesCargadas();
+    }
+
+    public void mostrarHabilidadesCargadas(){
+        panelHabilidad.getCampoTexto().setText("");
+        batalla.getHabilidades().forEach(h-> panelHabilidad.getCampoTexto().append( "* " + h.getNombre()+ "\n"));
     }
 
     public void registerListener(BotonListener b){
@@ -69,6 +76,6 @@ public class PanelHabilidadController implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        panelHabilidad.getCampoTexto().append("* " + fileChooser.getSelectedFile().getName() + "\n");
+        mostrarHabilidadesCargadas();
     }
 }
