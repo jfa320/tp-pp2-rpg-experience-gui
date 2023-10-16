@@ -34,7 +34,7 @@ public class PanelHabilidadController implements Observer {
 
     private void initialize(){
 
-        panelHabilidad.getBotonCarga().setText("Boton para cargar habilidad");
+        panelHabilidad.getBotonCarga().setText("Cargar Habilidad");
 
         panelHabilidad.getBotonCarga().addActionListener(new ActionListener(){
             @Override
