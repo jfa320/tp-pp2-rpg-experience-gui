@@ -46,7 +46,6 @@ public class PanelHabilidadController implements Observer {
                         cargadorHabilidades.cargar(batalla, fileChooser.getSelectedFile().getAbsolutePath());
                     } catch (Exception e1) {
                         panelHabilidad.getMensajeError().setText(e1.getMessage());
-                        e1.printStackTrace();
                     }      
                 }
              }
