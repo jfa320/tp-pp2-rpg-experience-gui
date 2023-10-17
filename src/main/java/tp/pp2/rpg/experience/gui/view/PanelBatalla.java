@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +28,10 @@ public class PanelBatalla extends JPanel implements Observer {
 
 	private Batalla batalla;
 	private PanelBatallaController panelCombateController;
+	
+	private JLabel imgPersonaje;
+	private JLabel imgMapa;
+	private JLabel imgEnemigo;
 	
 	private JLabel resultadoCombate;
 
@@ -77,6 +82,20 @@ public class PanelBatalla extends JPanel implements Observer {
 		barraVidaJ2.setStringPainted(true);
 		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+batalla.getPersonajeVida(1));
 		this.add(barraVidaJ2);
+		
+		//imagenes
+		imgMapa = new JLabel();
+		imgPersonaje = new JLabel();
+		imgEnemigo = new JLabel();
+
+		imgPersonaje.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje-w.png")));
+		imgEnemigo.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje2.png")));
+		imgMapa.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\mapa.png")));
+		
+		this.add(imgEnemigo);
+		this.add(imgPersonaje);
+		this.add(imgMapa);
+		
 		botonesHabilidades.get(0).setBounds(0, 265, 455, 120);
 		botonesHabilidades.get(1).setBounds(455, 265, 455, 120);
 		botonesHabilidades.get(2).setBounds(0, 385, 455, 120);
@@ -84,7 +103,9 @@ public class PanelBatalla extends JPanel implements Observer {
 		rivalNombreLabel.setBounds(10, -45, 455, 120);
 		personajeNombreLabel.setBounds(500, 180, 455, 120);
 		resultadoCombate.setBounds(400, 500, 455, 120);
-		
+		imgMapa.setBounds(50,25,800,200);
+		imgPersonaje.setBounds(50,25,800,200);
+		imgEnemigo.setBounds(50,25,800,200);
 	}
 
 	
