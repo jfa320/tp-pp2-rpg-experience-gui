@@ -8,6 +8,7 @@ import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
@@ -98,6 +99,17 @@ public class PanelBatallaController implements Observer {
 	}
 
 	private void transicionTurno(){
+
+		if (panelCombate.getImgEnemigo().getIcon().equals(panelCombate.getTrasEnemigo()))
+			panelCombate.getImgEnemigo().setIcon(panelCombate.getFrenteEnemigo());	
+		else
+			panelCombate.getImgEnemigo().setIcon(panelCombate.getTrasEnemigo());
+		
+		if (panelCombate.getImgPersonaje().getIcon().equals(panelCombate.getTrasPj()))
+			panelCombate.getImgPersonaje().setIcon(panelCombate.getFrentePj());
+		else
+			panelCombate.getImgPersonaje().setIcon(panelCombate.getTrasPj());
+
 		Rectangle nombreAux = panelCombate.getPersonajeNombreLabel().getBounds();
 		panelCombate.getPersonajeNombreLabel().setBounds(panelCombate.getRivalNombreLabel().getBounds());
 		panelCombate.getRivalNombreLabel().setBounds(nombreAux);

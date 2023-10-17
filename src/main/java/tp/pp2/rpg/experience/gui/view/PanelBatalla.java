@@ -1,6 +1,7 @@
 package tp.pp2.rpg.experience.gui.view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -32,6 +33,11 @@ public class PanelBatalla extends JPanel implements Observer {
 	private JLabel imgPersonaje;
 	private JLabel imgMapa;
 	private JLabel imgEnemigo;
+
+	private ImageIcon personajeFrente; 
+	private ImageIcon personajeTras; 
+	private ImageIcon enemigoFrente;
+	private ImageIcon enemigoTras;
 	
 	private JLabel resultadoCombate;
 
@@ -44,12 +50,10 @@ public class PanelBatalla extends JPanel implements Observer {
 	private void initialize() {
 		batalla.addObserver(this);
 		botonesHabilidades=new ArrayList<JButton>();
-		
+
 		for(int i=0;i<4;i++) {
 			botonesHabilidades.add(new JButton());
 		}
-
-		
 
 		personajeNombreLabel = new JLabel();
 		personajeNombreLabel.setText(batalla.getPersonajeNombre(0));
@@ -87,9 +91,13 @@ public class PanelBatalla extends JPanel implements Observer {
 		imgMapa = new JLabel();
 		imgPersonaje = new JLabel();
 		imgEnemigo = new JLabel();
-
-		imgPersonaje.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje-w.png")));
-		imgEnemigo.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje2.png")));
+		personajeFrente = new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje2.png"));
+		personajeTras = new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje.png"));
+		enemigoFrente = new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje2-w.png"));
+		enemigoTras = new ImageIcon(this.getClass().getClassLoader().getResource("images\\personaje-w.png"));
+		
+		imgPersonaje.setIcon(personajeTras);
+		imgEnemigo.setIcon(enemigoFrente);
 		imgMapa.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("images\\mapa.png")));
 		
 		this.add(imgEnemigo);
@@ -156,6 +164,30 @@ public class PanelBatalla extends JPanel implements Observer {
 
 	public void setResultadoCombate(String resultadoCombate) {
 		this.resultadoCombate.setText(resultadoCombate);
+	}
+
+	public JLabel getImgPersonaje(){
+		return imgPersonaje;
+	}
+
+	public JLabel getImgEnemigo(){
+		return imgEnemigo;
+	}
+	
+	public ImageIcon getFrentePj(){
+		return personajeFrente;
+	}
+
+	public ImageIcon getTrasPj(){
+		return personajeTras;
+	}
+
+	public ImageIcon getFrenteEnemigo(){
+		return enemigoFrente;
+	}
+
+	public ImageIcon getTrasEnemigo(){
+		return enemigoTras;
 	}
 
 	@Override

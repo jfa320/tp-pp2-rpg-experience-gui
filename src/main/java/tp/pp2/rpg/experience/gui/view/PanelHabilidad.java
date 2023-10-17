@@ -1,6 +1,12 @@
 package tp.pp2.rpg.experience.gui.view;
 
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -15,6 +21,8 @@ public class PanelHabilidad extends JPanel {
     private JButton iniciarBatalla;
     private JTextArea campoTexto;
     private JTextArea mensajeError;
+    private JLabel fondo;
+    private JLabel mensaje;
 
     public PanelHabilidad(Batalla batalla){
         initialize();
@@ -22,6 +30,8 @@ public class PanelHabilidad extends JPanel {
     }
 
     private void initialize(){
+        fondo = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("images\\fondo.jpg")));
+        mensaje = new JLabel();
         botonCargaHabilidad = new JButton();
         iniciarBatalla = new JButton();
         campoTexto = new JTextArea();
@@ -29,15 +39,39 @@ public class PanelHabilidad extends JPanel {
         mensajeError = new JTextArea();
         mensajeError.setEditable(false);
 
-        botonCargaHabilidad.setBounds(0, 265, 455, 120);
-        iniciarBatalla.setBounds(0, 500, 455, 120);     
-        campoTexto.setBounds(500, 265, 500, 520);
-        mensajeError.setBounds(220, 100,600, 30);      
+        fondo.setBounds(0,0,1000,700);
 
+        botonCargaHabilidad.setBounds(600, 265, 300, 100);
+        botonCargaHabilidad.setContentAreaFilled(false);
+        botonCargaHabilidad.setForeground(Color.WHITE);
+        botonCargaHabilidad.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
+        
+        iniciarBatalla.setBounds(600, 500, 300, 100);
+        iniciarBatalla.setContentAreaFilled(false); 
+        iniciarBatalla.setForeground(Color.WHITE);
+        iniciarBatalla.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
+
+        mensaje.setText("HABILIDADES CARGADAS");
+        mensaje.setBounds(100,215,200,50);
+        mensaje.setOpaque(false);
+        mensaje.setForeground(Color.BLACK);
+
+        campoTexto.setBounds(100, 265, 400, 350);
+        campoTexto.setOpaque(false);
+        campoTexto.setFont(new Font(Font.DIALOG, Font.BOLD, 24));
+        campoTexto.setForeground(Color.BLACK);
+        
+        mensajeError.setBounds(220, 100,600, 30);
+        mensajeError.setOpaque(false);
+        mensajeError.setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
+        mensajeError.setForeground(Color.RED);
+       
         this.add(botonCargaHabilidad);
         this.add(campoTexto);
+        this.add(mensaje);
         this.add(mensajeError);
         this.add(iniciarBatalla);
+        this.add(fondo);
     }
 
     public JButton getBotonCarga(){

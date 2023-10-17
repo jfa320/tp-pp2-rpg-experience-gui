@@ -1,5 +1,8 @@
 package tp.pp2.rpg.experience.gui.view;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -28,11 +31,13 @@ public class VentanaPrincipal extends JFrame implements BotonListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		this.setTitle("RPG Battle Experience");
+		Image icono = new ImageIcon(this.getClass().getClassLoader().getResource("images\\iconoApp.png")).getImage();
+		this.setIconImage(icono);
 		this.setPanel(panelHabilidad);
 	}
 
 	private void setPanel(JPanel panel) {
-		panel.setBounds(30, 1, 1000, 1000);
+		panel.setBounds(0, 0, 1000, 1000);
 		panel.setLayout(null);
 		panel.setVisible(true);
 		this.getContentPane().add(panel);
