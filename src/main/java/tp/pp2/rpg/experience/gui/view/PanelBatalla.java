@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import tp.pp2.rpg.experience.core.entidades.Batalla;
-import tp.pp2.rpg.experience.core.entidades.estados.EstadoBatalla;
-import tp.pp2.rpg.experience.core.entidades.rpg.experience.ObtenedorGanador;
 import tp.pp2.rpg.experience.gui.controller.PanelBatallaController;
 
 public class PanelBatalla extends JPanel implements Observer {
@@ -49,9 +47,9 @@ public class PanelBatalla extends JPanel implements Observer {
 		
 
 		personajeNombreLabel = new JLabel();
-		personajeNombreLabel.setText(batalla.getPersonajeNombre(0));
+		personajeNombreLabel.setText(batalla.getPersonaje(1).getProperty("nombre"));
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(batalla.getPersonajeNombre(1));
+		rivalNombreLabel.setText(batalla.getPersonaje(2).getProperty("nombre"));
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -64,20 +62,20 @@ public class PanelBatalla extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		double vidaMostrarJ1=100*((double)batalla.getPersonajeVida(0));
+		double vidaMostrarJ1=100*(Double.parseDouble(batalla.getPersonaje(1).getProperty("vida")));
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(batalla.getPersonajeVida(0)+"/"+batalla.getPersonajeVida(0));
+		barraVidaJ1.setString(batalla.getPersonaje(1).getProperty("vida")+"/"+batalla.getPersonaje(1).getProperty("vida"));
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1));
+		double vidaMostrarJ2=100*(Double.parseDouble(batalla.getPersonaje(2).getProperty("vida")));
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+batalla.getPersonajeVida(1));
+		barraVidaJ2.setString(batalla.getPersonaje(2).getProperty("vida")+"/"+batalla.getPersonaje(2).getProperty("vida"));
 		this.add(barraVidaJ2);
 		botonesHabilidades.get(0).setBounds(0, 265, 455, 120);
 		botonesHabilidades.get(1).setBounds(455, 265, 455, 120);
