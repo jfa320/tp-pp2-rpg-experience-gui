@@ -72,16 +72,16 @@ public class PanelBatallaController implements Observer {
 	}
 
 	private void actualizarVidas(){
-		double vidaMostrar=100*(Double.parseDouble(batalla.getPersonaje(1).getProperty("vida"))/100);
-		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 1);
+		double vidaMostrar=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida"))/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 0);
 		
-		vidaMostrar=100*(Double.parseDouble(batalla.getPersonaje(2).getProperty("vida"))/100);
-		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 2);
+		vidaMostrar=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida"))/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 1);
 	}
 
 	private void actualizarVidasAux(JProgressBar bararVida, double nuevaVida,int indexPersonaje){
 		bararVida.setValue((int)nuevaVida);
-		bararVida.setString(batalla.getPersonaje(indexPersonaje).getProperty("vida")+"/"+ 100);
+		bararVida.setString(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(indexPersonaje)).getProperty("vida")+"/"+ 100);
 	}
 
 	private void transicionTurno(){
