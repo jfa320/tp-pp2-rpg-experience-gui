@@ -1,4 +1,4 @@
-﻿# TP Proyecto Profesional 2 - RPG Experience (GUI)
+﻿# TP Proyecto Profesional 2 - RPG Battle Experience (GUI)
 
 TP realizado para la materia Proyecto Profesional 2 de la Universidad Nacional de General Sarmiento.
 

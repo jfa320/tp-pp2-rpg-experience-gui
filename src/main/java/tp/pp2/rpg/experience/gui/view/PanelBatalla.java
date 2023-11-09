@@ -56,9 +56,10 @@ public class PanelBatalla extends JPanel implements Observer {
 		}
 
 		personajeNombreLabel = new JLabel();
-		personajeNombreLabel.setText(batalla.getPersonajeNombre(0));
+		personajeNombreLabel.setText(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("nombre"));
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(batalla.getPersonajeNombre(1));
+		rivalNombreLabel.setText(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("nombre"));
+		rivalNombreLabel = new JLabel();
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -71,20 +72,20 @@ public class PanelBatalla extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		double vidaMostrarJ1=100*((double)batalla.getPersonajeVida(0));
+		double vidaMostrarJ1=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida")));
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(batalla.getPersonajeVida(0)+"/"+batalla.getPersonajeVida(0));
+		barraVidaJ1.setString(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida"));
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		double vidaMostrarJ2=100*((double)batalla.getPersonajeVida(1));
+		double vidaMostrarJ2=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida")));
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(batalla.getPersonajeVida(1)+"/"+batalla.getPersonajeVida(1));
+		barraVidaJ2.setString(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida"));
 		this.add(barraVidaJ2);
 		
 		//imagenes
