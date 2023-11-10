@@ -3,6 +3,8 @@ package tp.pp2.rpg.experience.gui.view;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,7 +16,7 @@ import tp.pp2.rpg.experience.core.entidades.Batalla;
 import tp.pp2.rpg.experience.gui.BotonListener;
 import tp.pp2.rpg.experience.gui.controller.PanelHabilidadController;
 
-public class PanelHabilidad extends JPanel {
+public class PanelHabilidad extends JPanel implements Observer {
 
     private PanelHabilidadController panelHabilidadController;
     private JButton botonCargaHabilidad;
@@ -23,9 +25,11 @@ public class PanelHabilidad extends JPanel {
     private JTextArea mensajeError;
     private JLabel fondo;
     private JLabel mensaje;
+    private Batalla batalla;
 
     public PanelHabilidad(Batalla batalla){
         initialize();
+        this.batalla=batalla;
         panelHabilidadController = new PanelHabilidadController(this,batalla);
     }
 
@@ -93,5 +97,11 @@ public class PanelHabilidad extends JPanel {
     public void registerListener(BotonListener b){
         panelHabilidadController.registerListener(b);
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.getCampoTexto().setText("");
+        batalla.getHabilidades().forEach(h-> this.getCampoTexto().append( "* " + h.getNombre()+ "\n"));
+	}
     
 }

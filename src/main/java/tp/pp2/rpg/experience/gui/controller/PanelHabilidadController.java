@@ -61,7 +61,7 @@ public class PanelHabilidadController implements Observer {
             }
         });
 
-        mostrarHabilidadesCargadas();
+        //mostrarHabilidadesCargadas();
     }
 
     public void mostrarHabilidadesCargadas(){
