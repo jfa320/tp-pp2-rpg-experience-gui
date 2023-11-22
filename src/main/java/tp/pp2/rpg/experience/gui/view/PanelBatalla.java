@@ -44,14 +44,12 @@ public class PanelBatalla extends JPanel implements Observer {
 			botonesHabilidades.add(new JButton());
 		}
 
-		
-
 		personajeNombreLabel = new JLabel();
 		String personaje1=batalla.getPersonajes().get(0);
 		String personaje2=batalla.getPersonajes().get(1);
-		personajeNombreLabel.setText(batalla.getCaracteristicasPersonaje(personaje1).getProperty("nombre"));
+		personajeNombreLabel.setText(personaje1);
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(batalla.getCaracteristicasPersonaje(personaje2).getProperty("nombre"));
+		rivalNombreLabel.setText(personaje2);
 
 		resultadoCombate=new JLabel();
 		
