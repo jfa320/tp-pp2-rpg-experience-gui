@@ -78,6 +78,7 @@ public class PanelBatallaController implements Observer {
 		
 		String personaje2=batalla.getPersonajes().get(1);
 		vidaMostrar=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje2).getProperty("vida"))/100);
+
 		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 1);
 	}
 

@@ -52,6 +52,7 @@ public class PanelBatalla extends JPanel implements Observer {
 		personajeNombreLabel.setText(batalla.getCaracteristicasPersonaje(personaje1).getProperty("nombre"));
 		rivalNombreLabel = new JLabel();
 		rivalNombreLabel.setText(batalla.getCaracteristicasPersonaje(personaje2).getProperty("nombre"));
+
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -65,6 +66,7 @@ public class PanelBatalla extends JPanel implements Observer {
 		this.add(resultadoCombate);
 		// VIDAJ1
 		double vidaMostrarJ1=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida")));
+
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);

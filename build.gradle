@@ -25,6 +25,7 @@ dependencies {
 
     //Dependencia al proyecto core
   	implementation 'com.github.jfa320:tp-pp2-rpg-experience-core:dcf96a0d65'
+
 	
 }
 
