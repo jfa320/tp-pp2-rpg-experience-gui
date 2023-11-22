@@ -46,7 +46,7 @@ public class PanelBatallaController implements Observer {
 				this.panelCombate.getBotonesHabilidades().get(index).addActionListener(e -> {
 					try {
 						panelCombate.getBotonesHabilidades().get(index).setEnabled(false);
-						batalla.jugar(batalla.getHabilidades().get(index));
+						batalla.jugar(batalla.getHabilidades().get(index).getNombre());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -72,16 +72,19 @@ public class PanelBatallaController implements Observer {
 	}
 
 	private void actualizarVidas(){
-		double vidaMostrar=100*(Double.parseDouble(batalla.getPersonaje(1).getProperty("vida"))/100);
-		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 1);
+		String personaje1=batalla.getPersonajes().get(0);
+		double vidaMostrar=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida"))/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ1(), vidaMostrar, 0);
 		
-		vidaMostrar=100*(Double.parseDouble(batalla.getPersonaje(2).getProperty("vida"))/100);
-		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 2);
+		String personaje2=batalla.getPersonajes().get(1);
+		vidaMostrar=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje2).getProperty("vida"))/100);
+		actualizarVidasAux(panelCombate.getBarraVidaJ2(), vidaMostrar, 1);
 	}
 
 	private void actualizarVidasAux(JProgressBar bararVida, double nuevaVida,int indexPersonaje){
 		bararVida.setValue((int)nuevaVida);
-		bararVida.setString(batalla.getPersonaje(indexPersonaje).getProperty("vida")+"/"+ 100);
+		String personaje1=batalla.getPersonajes().get(indexPersonaje);
+		bararVida.setString(batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida")+"/"+ 100);
 	}
 
 	private void transicionTurno(){
