@@ -56,10 +56,12 @@ public class PanelBatalla extends JPanel implements Observer {
 		}
 
 		personajeNombreLabel = new JLabel();
-		personajeNombreLabel.setText(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("nombre"));
+		String personaje1=batalla.getPersonajes().get(0);
+		String personaje2=batalla.getPersonajes().get(1);
+		personajeNombreLabel.setText(personaje1);
 		rivalNombreLabel = new JLabel();
-		rivalNombreLabel.setText(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("nombre"));
-		rivalNombreLabel = new JLabel();
+		rivalNombreLabel.setText(personaje2);
+
 		resultadoCombate=new JLabel();
 		
 		barraVidaJ2 = new JProgressBar(0, 100);
@@ -72,20 +74,21 @@ public class PanelBatalla extends JPanel implements Observer {
 		this.add(personajeNombreLabel);
 		this.add(resultadoCombate);
 		// VIDAJ1
-		double vidaMostrarJ1=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida")));
+		double vidaMostrarJ1=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida")));
+
 		barraVidaJ1.setValue((int)vidaMostrarJ1);
 		barraVidaJ1.setBounds(10, 235, 455, 15);
 		barraVidaJ1.setForeground(Color.green);
 		barraVidaJ1.setStringPainted(true);
-		barraVidaJ1.setString(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(0)).getProperty("vida"));
+		barraVidaJ1.setString(batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(personaje1).getProperty("vida"));
 		this.add(barraVidaJ1);
 		// VIDAJ2
-		double vidaMostrarJ2=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida")));
+		double vidaMostrarJ2=100*(Double.parseDouble(batalla.getCaracteristicasPersonaje(personaje2).getProperty("vida")));
 		barraVidaJ2.setValue((int)vidaMostrarJ2);
 		barraVidaJ2.setBounds(425, 5, 455, 15);
 		barraVidaJ2.setForeground(Color.green);
 		barraVidaJ2.setStringPainted(true);
-		barraVidaJ2.setString(batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(batalla.getPersonajes().get(1)).getProperty("vida"));
+		barraVidaJ2.setString(batalla.getCaracteristicasPersonaje(personaje2).getProperty("vida")+"/"+batalla.getCaracteristicasPersonaje(personaje2).getProperty("vida"));
 		this.add(barraVidaJ2);
 		
 		//imagenes
